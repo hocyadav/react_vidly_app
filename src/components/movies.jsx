@@ -2,7 +2,19 @@ import React, { Component } from 'react'
 class Movies extends Component {
     state = {  }
     render() { 
-        return ( <h1>Movies Component</h1> );
+        return ( 
+        <table className="table">
+            {/* table.table>thead>tr>th*4 */}
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Genre</th>
+                    <th>Stock</th>
+                    <th>Rate</th>
+                </tr>
+            </thead>
+        </table>
+        );
     }
 }
  
