@@ -33,6 +33,7 @@ class Movies extends Component {
                             <td>{movie.dailyRentalRate}</td>
                             <td>
                                 <button 
+                                key = {movie._id}
                                 onClick={ ()=>this.handleDelete({movie}) }
                                 className="btn btn-danger btn-sm">
                                 Delete
