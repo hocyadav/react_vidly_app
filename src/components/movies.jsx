@@ -5,11 +5,11 @@ class Movies extends Component {
     state = { 
         movies: getMovies()
      };
-     //create new movie object except given id movie
+     //LOGIC : create new movie object except given id movie
      handleDelete = movie => {
-         console.log(movie._id);//not able to access
-         const newMovies = this.state.movies.filter(m => m._id !== movie._id);
-         this.setState( {movies : newMovies} );
+         console.log("Deleted",movie._id);//not able to access
+         const newMovies = this.state.movies.filter(m => m._id !== movie._id);//create new movie object 
+         this.setState( {movies : newMovies} );//set new movie object
      };
 
     render() { 
