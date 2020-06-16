@@ -5,13 +5,19 @@ class Movies extends Component {
     state = { 
         movies: getMovies()
      };
-
-     handleDelete = (movie) => {
-        console.log(movie);
+     //create new movie object except given id movie
+     handleDelete = movie => {
+         console.log(movie._id);//not able to access
+         const newMovies = this.state.movies.filter(m => m._id !== movie._id);
+         this.setState( {movies : newMovies} );
      };
 
     render() { 
-        return ( 
+        if(this.state.movies.length === 0) {
+            return <p>There is no movies in the data base.</p>
+        }
+        return ( <React.Fragment>
+        <p>Showing {this.state.movies.length} movies in the database</p>
         <table className="table">
             {/* table.table>thead>tr>th*4 */}
             <thead>
@@ -24,25 +30,26 @@ class Movies extends Component {
                 </tr>
             </thead>
             <tbody>
-                {this.state.movies.map(
-                movie => (
+                {this.state.movies.map(movie => (
                            <tr key = {movie._id}>
-                            <td>{movie.title}</td>
-                            <td>{movie.genre.name}</td>
-                            <td>{movie.numberInStock}</td>
-                            <td>{movie.dailyRentalRate}</td>
-                            <td>
-                                <button 
-                                onClick={ ()=>this.handleDelete({movie}) }
-                                className="btn btn-danger btn-sm">
-                                Delete
-                                </button>
-                            </td>
+                                <td>{movie.title}</td>
+                                <td>{movie.genre.name}</td>
+                                <td>{movie.numberInStock}</td>
+                                <td>{movie.dailyRentalRate}</td>
+                                <td>
+                                    <button 
+                                    onClick={ () => this.handleDelete(movie) }
+                                    className="btn btn-danger btn-sm">
+                                    Delete
+                                    </button>
+                                </td>
                             </tr>
-                        )
-                )}
+                        ))}
             </tbody>
         </table>
+        </React.Fragment>
+
+        
         );
     }
 }
